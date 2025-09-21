@@ -27,7 +27,7 @@ conda activate prodrug-ml
 conda install -c conda-forge rdkit -y
 
 # ML/utility packages
-pip install scikit-learn pandas numpy matplotlib
+pip install scikit-learn pandas numpy matplotlib```
 
 Repository Structure & Steps
 
