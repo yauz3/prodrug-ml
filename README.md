@@ -27,38 +27,38 @@ conda activate prodrug-ml
 conda install -c conda-forge rdkit -y
 
 # ML/utility packages
-pip install scikit-learn pandas numpy matplotlib```
-
-Repository Structure & Steps
+pip install scikit-learn pandas numpy matplotlib
+```
+### Repository Structure & Steps
 
 Pre_step_prepare_positive_data.py
 Sanity checks for positive samples (required fields, duplicates, missing entries) before running the main pipeline.
 
-1_overlap_control/
+#### 1_overlap_control/
 De-duplication and overlap control across sources (e.g., InChIKey standardization, parent–prodrug reconciliation) to prevent leakage between classes/splits.
 
-2_preparation_of_fingerprint/
+#### 2_preparation_of_fingerprint/
 RDKit-based featurization to generate molecular fingerprints/descriptors (e.g., Avalon/Morgan) and export feature matrices.
 
-3_test_set_isolation/
+#### 3_test_set_isolation/
 Early, untouched test split created before any preprocessing or model selection; persists consistent train.csv / test.csv.
 
-4_and_5_hardness_control_and_ratio/
+#### 4_and_5_hardness_control_and_ratio/
 Hardness filtering for negatives (remove trivially easy decoys) and class/source ratio balancing to stabilize learning/evaluation.
 
-6_domain_bias/
+#### 6_domain_bias/
 Domain-bias checks (e.g., training a source/domain classifier) to detect distribution shortcuts unrelated to true prodrug-likeness.
 
-7_cross_decoy/
+#### 7_cross_decoy/
 Cross-decoy validation by rotating negative sources/folds to stress-test generalization; can inform robust feature list selection.
 
-8_test_performance/
+#### 8_test_performance/
 Final training and evaluation on the untouched test set; reports early-recognition (EF@1%, EF@5%, BEDROC) and global metrics (ROC-AUC, AP, F1, etc.).
 
 .gitignore
 Ignores caches, editor files, and other non-source artifacts.
 
-Typical Usage (High Level)
+### Typical Usage (High Level)
 
 Obtain positive data from smProdrugs and place files in the expected input paths.
 
@@ -72,30 +72,26 @@ Train final models and compute test performance metrics.
 
 Use each script’s -h/--help for arguments and I/O details.
 
-Reproducibility Notes
+## Reproducibility Notes
 
 Fix random seeds where supported, and version the generated train.csv / test.csv to avoid leakage.
 
 If adding new decoy sources, re-run overlap control, hardness checks, and domain-bias analysis before comparing results.
 
-Citation
+## Citation
 
 If this repository or pipeline is useful in academic work, please cite the Prodrug-ML paper (citation details will be added upon publication).
 
-License & Usage
+## License & Usage
 
-Academic usage if no change (as-is).
+Academic usage is no change (as-is).
 
 For commercial usage (or any usage beyond the above), please contact: s.yavuz.ugurlu@gmail.com
 .
 
 Note: The positive dataset from smProdrugs is not included here and must be requested from the original source under their terms.
 
-Acknowledgements
+## Acknowledgements
 
 We thank the smProdrugs team for dataset access and the developers of RDKit and scikit-learn for essential open-source tools.
 
-
-
-
-these should be in read_me of github format please? 
